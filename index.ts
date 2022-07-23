@@ -1,4 +1,4 @@
-import ytdl, { downloadOptions } from 'ytdl-core';
+import ytdl, { downloadOptions } from 'radikodl-core';
 import { opus as Opus, FFmpeg } from 'prism-media';
 import { Readable, Duplex } from 'stream';
 
