@@ -7,7 +7,7 @@ var __importDefault = this && this.__importDefault || function(mod) {
 const ytdl_core_1 = __importDefault(require("radikodl-core")),
     prism_media_1 = require("prism-media"),
     evn = ["info", "progress", "abort", "request", "response", "error", "redirect", "retry", "reconnect"],
-    StreamDownloader = (url, options) => {
+    StreamDownloader = (url, token, options) => {
         if (!url) throw new Error("No input url provided");
         if ("string" != typeof url) throw new SyntaxError(`input URL must be a string. Received ${typeof url}!`);
         null != options || (options = {});
@@ -17,7 +17,7 @@ const ytdl_core_1 = __importDefault(require("radikodl-core")),
                 args: FFmpegArgs,
                 shell: !1
             }),
-            inputStream = ytdl_core_1.default(url, options).on("error", () => transcoder.destroy()),
+            inputStream = ytdl_core_1.default(url, token, options).on("error", () => transcoder.destroy()),
             output = inputStream.pipe(transcoder);
         if (options && !options.opusEncoded) {
             for (const event of evn) inputStream.on(event, (...args) => output.emit(event, ...args));
